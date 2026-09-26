@@ -1,0 +1,15 @@
+node_modules/
+dist/
+*.log
+
+.env
+.env.*
+!.env.example
+
+# Runtime user uploads: ground photos and KYC identity documents.
+# These are user data, not source, and must never be committed.
+# server.js recreates uploads/kyc on start, so a fresh clone needs no setup.
+uploads/
+
+# Local-only dev scratch: manual rate-limit burst checker, not part of `npm test`
+rl-test.js

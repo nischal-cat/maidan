@@ -1,0 +1,51 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.local
+# Keep the placeholder template tracked even if a broader .env.* rule is added later
+!.env.example
+
+# Local planning and AI-generated working documents.
+# These stay on this machine for continued development but are not published.
+planning.md
+Maidan-Design-Spec.md
+Maidan_Payment_Gateway_Guide.md
+PAYMENT_GATEWAY_PLAN.md
+
+# AI coding-agent and assistant configuration (local only)
+.continue/
+.cursor/
+.claude/
+.opencode/
+.windsurf/
+.aider*
+.copilot/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

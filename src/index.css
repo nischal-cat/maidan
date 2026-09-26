@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Maidan design tokens — source of truth: Maidan-Design-Spec.md A2/A4 */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --background: oklch(0.985 0.006 160);
+  --foreground: oklch(0.18 0.03 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.72 0.22 148);
+  --primary-foreground: oklch(0.15 0.03 255);
+  --secondary: oklch(0.94 0.018 157);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.95 0.008 245);
+  --muted-foreground: oklch(0.5 0.03 255);
+  --accent: oklch(0.955 0.025 150);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.9 0.015 250);
+  --input: oklch(0.9 0.015 250);
+  --ring: oklch(0.72 0.22 148);
+  --surface-strong: oklch(0.16 0.035 255);
+  --surface-strong-foreground: oklch(0.98 0.005 160);
+  --highlight: oklch(0.88 0.2 119);
+  --highlight-foreground: oklch(0.18 0.03 255);
+  --radius: 0.875rem;
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --popover: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --surface-strong: oklch(0.11 0.025 255);
+  --surface-strong-foreground: oklch(0.98 0.005 160);
+  --highlight: oklch(0.88 0.2 119);
+  --highlight-foreground: oklch(0.18 0.03 255);
+}
+
+@theme inline {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Semantic color utilities (spec A2) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface-strong: var(--surface-strong);
+  --color-surface-strong-foreground: var(--surface-strong-foreground);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+
+  /* Radius scale (spec A4 — --radius 14px base) */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  /* Elevation — the only two shadows (spec A4) */
+  --shadow-cta: 0 12px 30px color-mix(in oklab, var(--primary) 28%, transparent);
+  --shadow-card: 0 18px 50px color-mix(in oklab, var(--foreground) 8%, transparent);
+}
+
+@layer base {
+  body {
+    margin: 0;
+    min-width: 320px;
+    letter-spacing: 0;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 30%, transparent);
+  }
+
+  button,
+  a,
+  input {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+}
+
+/* Confirmation seal motion (spec A4) */
+@keyframes success-pop {
+  0% {
+    scale: 0.75;
+    opacity: 0;
+  }
+  70% {
+    scale: 1.06;
+    opacity: 1;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+@utility animate-success {
+  animation: success-pop 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Toast / bottom-sheet entry (owner workspace) */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@utility animate-toast-in {
+  animation: toast-in 0.18s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@utility animate-sheet-in {
+  animation: sheet-in 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}

@@ -1,0 +1,31 @@
+{
+  "name": "maidan-backend",
+  "version": "2.0.0",
+  "description": "Maidan Multi-Sport Booking System - Backend API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "db:setup": "node db/setup.js",
+    "db:migrate": "psql $DATABASE_URL -f migrations/001_maidan_v2.sql",
+    "db:migrate:file": "node db/run-migration.js",
+    "db:seed": "psql $DATABASE_URL -f db/seed_slots.sql",
+    "test": "node --test"
+  },
+"dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "firebase-admin": "^14.4.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.2.0",
+    "pg": "^8.12.0",
+    "zod": "^3.23.8"
+  },
+  "allowScripts": {
+    "bcrypt@5.1.1": true
+  }
+}
